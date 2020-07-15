@@ -5,7 +5,10 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import javax.persistence.Query;
-import javax.persistence.criteria.*;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaDelete;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.util.List;
 
 public class DoggyQuery {
@@ -61,10 +64,10 @@ public class DoggyQuery {
         session.close();
     }
 
-    public void updateDog(int id,int age, String name) {
+    public void updateDog(int id, int age, String name) {
         session = factory.openSession();
         session.beginTransaction();
-        Doggy dog = session.get(Doggy.class,id);
+        Doggy dog = session.get(Doggy.class, id);
         dog.setAge(age);
         dog.setName(name);
         session.save(dog);
